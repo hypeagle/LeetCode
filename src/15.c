@@ -15,12 +15,10 @@ int **threeSum(int *nums, int numsSize, int *returnSize)
 		return NULL;
 	}
 
-	int len = (numsSize * (numsSize - 1) * (numsSize - 2)) / (3 * 2 * 1);
-	int **retNums = (int **)malloc(len * sizeof(int *));
+	int count = (numsSize * (numsSize - 1) * (numsSize - 2)) / (3 * 2 * 1);
+	int **retNums = (int **)malloc(count * sizeof(int *));
 	int *tmpNums = NULL;
-	int index, tmp;
-	int i, j, k;
-	int left, right;
+	int i, j, k, left, right, sum, index;
 
 	for (i = 0; i < numsSize; i++)
 	{
@@ -36,54 +34,59 @@ int **threeSum(int *nums, int numsSize, int *returnSize)
 	}
 
 	index = 0;
-	for (i = 0; i < numsSize; i++)
+	for (i = 0; i < numsSize - 2; i++)
 	{
-		if (tmpNums && nums[i] == tmpNums[0])
+		if (i > 0 && nums[i] == nums[i - 1])
+		{
+			continue;
+		}
+		if (nums[i] + nums[i + 1] + nums[i + 2] > 0)
+		{
+			break;
+		}
+		if (nums[i] + nums[numsSize - 1] + nums[numsSize - 2] < 0)
 		{
 			continue;
 		}
 
-		for (j = i + 1; j < numsSize; j++)
+		for (j = i + 1; j < numsSize - 1; j++)
 		{
-			if (tmpNums && nums[i] == tmpNums[0] && nums[j] == tmpNums[1])
+			if ((j > i + 1) && (nums[j] == nums[j - 1]))
+			{
+				continue;
+			}
+			if (nums[i] + nums[j] + nums[j + 1]  > 0)
+			{
+				break;
+			}
+			if (nums[i] + nums[j] + nums[numsSize - 1] < 0)
 			{
 				continue;
 			}
 
-			tmp = 0 - nums[i] - nums[j];
 			left = j + 1;
 			right = numsSize;
-			k = left;
 			while (left < right)
 			{
 				k = (left + right) >> 1;
-				if (nums[k] > tmp)
-				{
-					right = k;
-				}
-				else if (nums[k] < tmp)
+				sum = nums[i] + nums[j] + nums[k];
+				if (sum < 0)
 				{
 					left = k + 1;
 				}
+				else if (sum > 0)
+				{
+					right = k;
+				}
 				else
-				{
-					break;
-				}
-			}
-
-			if (j < k && k < numsSize)
-			{
-				if (tmpNums && nums[i] == tmpNums[0] && nums[j] == tmpNums[1] && nums[k] == tmpNums[2])
-				{
-				}
-				else if (tmp ==  nums[k])
 				{
 					tmpNums = (int *)malloc(3 * sizeof(int));
 					tmpNums[0] = nums[i];
 					tmpNums[1] = nums[j];
 					tmpNums[2] = nums[k];
-
 					retNums[index++] = tmpNums;
+
+					break;
 				}
 			}
 		}
