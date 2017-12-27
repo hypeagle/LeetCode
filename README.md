@@ -25,6 +25,8 @@
 
 [38. Count and Say](https://leetcode.com/problems/count-and-say) [[C](./src/38.c)]
 
+[53. Maximum Subarray](https://leetcode.com/problems/maximum-subarray) [[Swift](./swift/53.swift)]
+
 ## Medium
 [2. Add Two Numbers](https://leetcode.com/problems/add-two-numbers) [[C](./src/2.c)]
 
@@ -79,6 +81,8 @@
 [49. Group Anagrams](https://leetcode.com/problems/group-anagrams) [[C](./src/49.c)]
 
 [50. Pow(x, n)](https://leetcode.com/problems/powx-n) [[C](./src/50.c)]
+
+[54. Spiral Matrix](https://leetcode.com/problems/spiral-matrix) [[Swift](./swift/54.swift)]
 
 ## Hard
 [4. Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays) [[C](./src/4.c)]
